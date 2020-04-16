@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+
+if [ $(pgrep -x cmus) ]
+then
+	case $1 in
+		"pause")cmus-remote -u ;;
+		"stop")	cmus-remote -s ;;
+		"next")	cmus-remote -n ;;
+		"prev")	cmus-remote -r ;;
+	esac
+fi

@@ -1,0 +1,102 @@
+[colors]
+background = #FFFF
+background-alt = #3d0s90
+foreground = #ffffff
+foreground-alt = ${xrdb:color7:#222}
+primary = ${xrdb:color6:#222}
+secondary = ${xrdb:color3:#222}
+alert = #bd2c40
+ 
+[bar/example]
+width = 100%
+height = 20
+fixed-center = true
+background = ${colors.background}
+foreground = ${colors.foreground}
+line-size = 1
+
+border-size = 0
+ 
+padding-left = 0
+padding-right = 5
+ 
+module-margin-left = 2
+module-margin-right = 0
+ 
+font-0 = Linux-Libertine:style=Bold:pixelsize=9;5
+font-1 = uni font:fontformat=truetype:size=10:antialias=false;0
+font-2 = siji:pixelsize=12;1
+font-3 = FontAwesome:style=Solid:size=5;1
+font-4 = FontAwesome:style=Regular:size=5;4
+font-5 = Font-Awesome-5-Free-Solid:size5;1
+font-6 = Font-Awesome-5:style=Free-Solid:size=5;1
+font-7 = FontAwesome5Free:style=Solid:size=10;4
+font-8 = FontAwesome5Free:style=Regular:size=11;4
+font-9 = FontAwesome5Brands:style=Regular:size=12;4
+ 
+enable-ipc = true 
+
+modules-left = bspwm xwindow
+modules-center = date
+modules-right = cmus alsa
+ 
+bottom = false
+ 
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+[module/bspwm]
+type = internal/bspwm
+module-margin-left = 8
+module-margin-right = 4
+
+label-focused = 
+label-focused-foreground = ${colors.foreground}
+label-focused-padding = 1
+
+label-occupied = 
+
+label-occupied-foreground = ${colors.foreground-alt}
+label-occupied-padding = 1
+
+label-urgent = %name%
+label-urgent-background = ${xrdb:color1:#ff0000}
+label-urgent-padding = 1
+
+label-empty = 
+label-empty-foreground = ${xrdb:foreground:#ff0000}
+label-empty-padding = 1
+
+[module/date]
+type = internal/date
+interval = 60.0
+ 
+date = " %b %e,"
+
+time = " %H:%M "
+format-prefix = "" 
+label = %date%%time%
+
+[module/cmus]
+type = custom/ipc
+
+hook-0 = sh ~/.config/polybar/music
+format = <output>
+
+[module/alsa]
+type = internal/alsa
+
+master-soundcard = default
+speaker-soundcard = default
+headphone-soundcard = default
+
+master-mixer = Master
+
+format-volume = <ramp-volume> <label-volume>
+
+label-muted =  %percentage%%
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 =  

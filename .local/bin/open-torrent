@@ -1,0 +1,22 @@
+#!/usr/bin/bash
+
+#pgrep -x transmission-da || transmission-daemon
+
+die() {
+    notify-send "Error mkdir $download_dir"
+    exit 1
+}
+
+removeSlashes() {
+    download_dir=$(echo $download_dir | tr -s /)
+}
+
+download_dir=$HOME/$(rofi -dmenu -i -p "Torrent download directory" -lines 1 | sed -e "s|^~||;s|^$HOME||;s|/$||")
+removeSlashes
+
+[ ! -d "$download_dir" ] && (mkdir -p "$download_dir" 2>/dev/null\
+                             && notify-send " Directory successfully created: $download_dir"\
+                             || die)
+
+transmission-remote -a "$@" -w $download_dir 2>/dev/null && notify-send " Torrent added!"
+

@@ -1,0 +1,51 @@
+#include "/home/vladimir/.xcolors/colorscheme"
+
+URxvt.font: xft:FiraCode Nerd Font Mono:antialias=true:size=9
+URxvt*letterSpace: 1
+URxvt.lineSpace: 0
+URxvt.geometry: 92x24
+URxvt.cursorBlink: 1
+URxvt.scrollBar: false
+URxvt.scrollBar_right: false
+URxvt.urgentOnBell: true
+URxvt.depth: 24
+URxvt.meta8: Alt
+
+URxvt.cursorColor: black
+
+*.foreground:  FOREGROUND
+*.background:  BACKGROUND
+*.cursorColor: FOREGROUND
+*.color0:       COLOR0
+*.color1:       COLOR1
+*.color2:       COLOR2
+*.color3:       COLOR3
+*.color4:       COLOR4
+*.color5:       COLOR5
+*.color6:       COLOR6
+*.color7:       COLOR7
+*.color8:       COLOR8
+*.color9:       COLOR9
+*.color10:      COLOR10
+*.color11:      COLOR11
+*.color12:      COLOR12
+*.color13:      COLOR13
+*.color14:      COLOR14
+*.color15:      COLOR15
+
+!! Common Keybinds for Navigations
+URxvt.keysym.M-k: command:\033]720;1\007
+URxvt.keysym.M-j: command:\033]721;1\007
+URxvt.keysym.Control-Up: \033[1;5A
+URxvt.keysym.Control-Down: \033[1;5B
+URxvt.keysym.Control-Right: \033[1;5C
+URxvt.keysym.Control-Left: \033[1;5D
+
+URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select
+URxvt.url-select.launcher:  firefox
+URxvt.url-select.underline: true
+URxvt.keysym.M-u:           perl:url-select:select_next
+URxvt.keysym.M-Escape:      perl:keyboard-select:activate
+URxvt.keysym.M-s:           perl:keyboard-select:search
+URxvt.keyboard-select.clipboard: true 
+

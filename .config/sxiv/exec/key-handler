@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+echo "called" > ~/test.txt
+case "$1" in
+"Return")	      
+	rotate 90 ;;
+esac

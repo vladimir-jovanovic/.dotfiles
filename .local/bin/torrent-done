@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+
+status=$(transmission-remote -l)
+
+ids=$(echo "$status" | grep "^\s*[0-9]\s*100%" | awk '{print $1}')
+
+ids=$(echo "$ids" | tr '\n' ',' | sed 's/.$//g')
+
+transmission-remote "-t$ids" -r && notify-send " Torrent finished!"
+
+transmission-remote -l | grep -q "^\s*[0-9]" || transmission-remote --exit

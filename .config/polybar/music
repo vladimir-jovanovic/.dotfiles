@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+
+pgrep -x cmus && cmus-remote -Q | grep -qw "file" && echo "  "$(cmus-remote -C "format_print  %a - %n. %t") || echo ""

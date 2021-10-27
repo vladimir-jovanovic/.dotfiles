@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+
+USB_MOUNTDIR="/run/media/$USER/"
+ANDROID_MOUNTDIR="$HOME/"
+
+drives=$(df -h | grep -E "$USB_MOUNTDIR|$ANDROID_MOUNTDIR")
+
+if [ -n "$drives" ]
+then
+	chosen=$(echo "$drives" | grep -E "$USB_MOUNTDIR|$ANDROID_MOUNTDIR" | sed "s/  \+/ /g" | \
+    cut -d " " -f 1,6- | rofi -dmenu -i -p "Unmount drive?" -hide-scrollbar -eh 1 -lines 5 | cut -d " " -f 2-)
+	[ -n "$chosen" ] && sudo -A umount "$chosen" && notify-send " $(echo $chosen | sed -e "s#$USB_MOUNTDIR##" -e "s#$ANDROID_MOUNTDIR##") can be safely removed!"
+fi
+

@@ -1,0 +1,84 @@
+#!/usr/bin/bash
+
+USB_MOUNTDIR="/run/media/$USER"
+ANDROID_MOUNTDIR="$HOME"
+
+mountable_USBs=
+mountable_Androids=
+
+notify() {
+	echo "$1"
+	notify-send " $1 successfully mounted!"
+}
+
+get_mountable_USBs() {
+	
+	local drives=$(lsblk -no "path,rm,type,vendor,model,uuid,fstype")
+	local usb_drives=$(echo "$drives" | awk '$2==1&&$3=="part"{print $1,$4,$5}')
+
+	local already_mounted=$(echo $(df -h | grep "/dev/sd" | awk '{print $1}') | sed 's/\s/|/g')
+	local mountable=$(echo $usb_drives | grep -Ev "$already_mounted")
+
+	local names=
+	for usb in $(echo "$mountable" | awk '{print $1}' | sed 's/[0-9]//g')
+	do
+		names+="$(echo "$drives" | grep -Ew "$usb" | awk '{printf "%s %s",$4,$5}')"$'\n'
+	done
+	
+	mountable=$(paste <(echo "$mountable") <(echo "$names" | sed "/^$/d") -d " ")
+	
+	echo "$mountable"
+
+}
+
+get_mountable_Androids() {
+	
+	local android_drives=$(simple-mtpfs -l 2>/dev/null)
+	local already_mounted=$(df -h | sed -e "s|.*$HOME/||g")
+	local mountable=$(echo "$android_drives" | grep -Fv -e "$already_mounted")
+
+	echo "$mountable"
+
+}
+
+mount_USB() {
+	
+	mountable_USBs=$(get_mountable_USBs)
+	
+	chosen=$(echo "$mountable_USBs" | awk '{print $4,$5,$1}' | rofi -dmenu -l 5 -i -p "Chose an USB device to mount." | cut -d " " -f 3)
+	[ -n "$chosen" ] || exit
+
+	chosen=$(echo "$mountable_USBs" | grep -Ew "$chosen")
+
+    devname=$(echo "$chosen" | awk '{print $1}')
+	name=$(echo "$chosen" | awk '{print $4,$5}')
+	uuid=$(echo "$chosen" | awk '{print $2}')
+	partition_type=$(echo "$chosen" | awk '{print $3}')
+
+	mount_point="$USB_MOUNTDIR/$name-$uuid"
+	[ -d "$mount_point" ] || sudo -A mkdir -p "$mount_point"
+
+	case "$partition_type" in
+    	"vfat")	sudo -A mount -t vfat "$devname" "$mount_point" -o rw,umask=0000 && notify "$name-$uuid";;
+        *) 		sudo -A mount "$devname" "$mount_point"; user="$(whoami)"; ug="$(groups | awk '{print $1}')"; sudo -A chown "$user":"$ug" "$mount_point" && notify "$name-$uuid";;
+	esac
+
+}
+
+mount_Android() {
+	
+	local chosen=$(get_mountable_Androids | rofi -dmenu -l 5 -i -p "Choose an Android device to mount.")
+	[ -n "$chosen" ] || exit
+
+	local name=$(echo $chosen | cut -d : -f 2 | sed -e 's/^[ \t]*//')
+
+	local mount_point="$ANDROID_MOUNTDIR/$name"
+	[ -d "$mount_point" ] || mkdir -p "$mount_point"
+	
+	simple-mtpfs --device "$(echo $chosen | cut -d : -f 1)" "$mount_point" && notify "$name"
+}
+
+case $(printf "Android\\nUSB" | rofi -dmenu -i -p "Select the type of device." -lines 2) in
+		USB) 		mount_USB ;;
+		Android)	mount_Android ;;
+esac

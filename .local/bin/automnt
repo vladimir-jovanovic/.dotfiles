@@ -1,0 +1,40 @@
+#!/usr/bin/bash
+
+MOUNTDIR="/run/media/$USER"
+
+getinfo() {
+	udevadm info -p $1 |\
+	grep -Ew "ID_VENDOR|ID_MODEL|ID_FS_UUID|DEVNAME" | sed "s/.*=//g" | tr '\n' ' ' | awk 'NF==4{print $0}'
+}
+
+notify(){
+	notify-send " $name successfully mounted!"
+}
+
+mntdrive() {
+
+	mp="$MOUNTDIR/$2"
+	[ -d "$mp" ] || sudo -A mkdir -p "$mp"
+
+	partitiontype="$(lsblk -no "FSTYPE" "$1")"
+
+	case "$partitiontype" in
+    	"vfat")	sudo -A mount -t vfat "$1" "$mp" -o rw,umask=0000 && notify;;
+        *) 		sudo -A mount "$1" "$mp"; user="$(whoami)"; ug="$(groups | awk '{print $1}')"; sudo -A chown "$user":"$ug" "$mp" && notify;;
+	esac
+}
+
+stdbuf -oL -- udevadm monitor --udev -s block | while read -r -- _ _ event devpath _; do 	
+	if [ "$event" = add ] 
+	then
+		
+		driveinfo=$(getinfo "$devpath")
+		[ -z "$driveinfo" ] && continue
+
+		devname=$(echo $driveinfo | awk '{print $1}')
+		name=$(echo $driveinfo | awk '{print $2,$3}')
+		uuid=$(echo $driveinfo | awk '{print $4}')
+
+		mntdrive $devname "$name-$uuid"
+	fi	
+done

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Teams
+Exec=teams
+Icon=teams
+Terminal=false
+Categories=AudioVideo;Network;
+MimeType=x-scheme-handler/msteams;

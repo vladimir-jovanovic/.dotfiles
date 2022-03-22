@@ -1,0 +1,50 @@
+#!/usr/bin/awk -f
+
+##  srtsync.awk -5000 filename.srt > synced.srt
+##  srtsync.awk 5000 filename.srt > synced.srt
+
+BEGIN {
+
+    if(ARGC != 3){
+        print "ERROR: expected two positional arguments" > "/dev/stderr"
+        exit 1
+    }
+
+    if(ARGV[1] !~ /^-?[0-9]*$/){
+        print "ERROR: expected time offset" > "/dev/stderr"
+        exit 1
+    }
+
+    timeOffset = ARGV[1]
+    ARGV[1] = ""
+    timecodePattern = "[0-9]{2}:[0-9]{2}:[0-9]{2},[0-9]{3} --> [0-9]{2}:[0-9]{2}:[0-9]{2},[0-9]{3}";
+}
+{
+    if(match($0, timecodePattern)){
+        split($0, time, " --> ");
+        printf("%s --> %s\n", 
+               timeMsToStr(timeStrToMs(time[1]) + timeOffset),\
+               timeMsToStr(timeStrToMs(time[2]) + timeOffset)\
+        );
+    }
+    else 
+        print($0);
+}
+
+function timeStrToMs(timeStr){
+    timeMs = 0;
+    split(timeStr, values, "[,:]");
+    timeMs += values[1] * 3600000;
+    timeMs += values[2] * 60000;
+    timeMs += values[3] * 1000;
+    timeMs += values[4];
+    return timeMs;
+}
+
+function timeMsToStr(timeMs){
+    h = timeMs / 3600000;
+    m = (timeMs / 60000) % 60;
+    s = (timeMs / 1000) % 60;
+    ms = timeMs % 1000;
+    return sprintf("%02d:%02d:%02d,%03d", h, m, s, ms);
+}

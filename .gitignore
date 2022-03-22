@@ -1,0 +1,7 @@
+.config/calcurse/apts
+.config/calcurse/todo
+.config/cmus/*
+.config/mpv/encoding.rst
+.config/mpv/ref-input.conf
+.config/mpv/restore-old-bindings.conf
+.config/transmission-daemon/stats.json

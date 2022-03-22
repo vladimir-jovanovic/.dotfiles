@@ -138,3 +138,19 @@ let g:coc_global_extensions = [
       \'coc-highlight',
       \'coc-eslint'
       \]
+
+map <F10> :sh<CR>
+
+filetype plugin indent on
+
+autocmd FileType python map <buffer> <F5> :w<CR>:exec '! clear; python3 -i' shellescape(@%, 1)<CR><CR>
+autocmd FileType python imap <buffer> <F5> <esc>:w<CR>:exec '! clear; python3 -i' shellescape(@%, 1)<CR>
+
+autocmd FileType python set softtabstop=4
+autocmd FileType python set tabstop=4
+autocmd FileType python set autoindent
+autocmd FileType python set expandtab
+autocmd FileType python set textwidth=80
+autocmd FileType python set smartindent
+autocmd FileType python set shiftwidth=4
+

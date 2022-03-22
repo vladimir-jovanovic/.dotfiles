@@ -23,17 +23,17 @@ if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
 fi
 
-# start some nice programs
-feh --no-fehbg --bg-scale ~/Pictures/wallpaper.jpg &
-sxhkd &
-xsetroot -cursor_name left_ptr &
-unclutter &
-
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
   [ -x "$f" ] && . "$f"
  done
  unset f
 fi
+
+# start some nice programs
+feh --no-fehbg --bg-scale ~/Pictures/wallpaper.jpg &
+sxhkd &
+xsetroot -cursor_name left_ptr &
+unclutter &
 
 exec bspwm

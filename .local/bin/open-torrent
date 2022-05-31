@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-#pgrep -x transmission-da || transmission-daemon
+pgrep -x transmission-da || transmission-daemon
 
 die() {
     notify-send "Error mkdir $download_dir"

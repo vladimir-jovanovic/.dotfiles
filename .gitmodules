@@ -32,3 +32,9 @@
 	path = .vim/pack/coc/start/coc.nvim
 	url = https://github.com/neoclide/coc.nvim.git
 	branch = release
+[submodule ".vim/pack/plugin/start/omnisharp-vim"]
+	path = .vim/pack/plugin/start/omnisharp-vim
+	url = https://github.com/OmniSharp/omnisharp-vim
+[submodule ".vim/pack/git-plugins/start/ale"]
+	path = .vim/pack/git-plugins/start/ale
+	url = https://github.com/dense-analysis/ale.git

@@ -119,6 +119,8 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> <Leader>rn <Plug>(coc-rename)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
+nmap <C-a>.  <Plug>(coc-codeaction)
+
 " closetag configuration
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.jsx'
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
@@ -154,3 +156,23 @@ autocmd FileType python set textwidth=80
 autocmd FileType python set smartindent
 autocmd FileType python set shiftwidth=4
 
+command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+autocmd BufNewFile,BufRead *.cshtml set filetype=html
+autocmd BufNewFile,BufRead *.razor set filetype=html
+
+let g:ale_set_quickfix = 1
+let g:ale_linters = {
+\ 'cs': ['OmniSharp']
+\}
+autocmd FileType cs nmap <silent> <buffer> <C-a>. <Plug>(omnisharp_code_actions)
+autocmd FileType cshtml nmap <silent> <buffer> <C-a>. <Plug>(omnisharp_code_actions)
+autocmd FileType cs nmap <silent> <buffer> <Leader>f <Plug>(omnisharp_code_format)
+autocmd FileType cshtml vmap <silent> <buffer> <Leader>f <Plug>(omnisharp_code_format)
+autocmd FileType cs nmap <silent> <buffer> <Leader>rn <Plug>(omnisharp_rename)
+
+autocmd FileType tex setl updatetime=1
+let g:livepreview_previewer = 'zathura'
+let g:livepreview_cursorhold_recompile = 0

@@ -34,5 +34,6 @@
             "compilationDatabaseDirectory": "out/relase"
         }
     },
-    "diagnostic.refreshAfterSave": true
+    "diagnostic.refreshAfterSave": true,
+    "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "typescript", "javascript"]
 } 

@@ -28,6 +28,3 @@ export FFF_KEY_CHILD1=";"	#move to child dir
 export FFF_KEY_PARENT1="l"	#move to parent dir
 export FFF_MARK_FORMAT=" %f*"	#marked item string
 export FFF_OPENER="xdg-open"	#file opener
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/.config/rofi/bin:$PATH"
-

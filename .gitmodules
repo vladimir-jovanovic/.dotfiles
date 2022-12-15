@@ -7,34 +7,6 @@
 [submodule ".vim/pack/bundle/start/vim-devicons"]
 	path = .vim/pack/bundle/start/vim-devicons
 	url = https://github.com/ryanoasis/vim-devicons
-[submodule ".vim/pack/vim-closer/start/vim-closer"]
-	path = .vim/pack/vim-closer/start/vim-closer
-	url = https://github.com/rstacruz/vim-closer.git
-[submodule ".vim/pack/bundle/start/vim-endwise"]
-	path = .vim/pack/bundle/start/vim-endwise
-	url = https://github.com/tpope/vim-endwise
-[submodule ".vim/pack/vim-javascript/start/vim-javascript"]
-	path = .vim/pack/vim-javascript/start/vim-javascript
-	url = https://github.com/pangloss/vim-javascript.git
-[submodule ".vim/pack/vim-jsx-pretty/start/vim-jsx-pretty"]
-	path = .vim/pack/vim-jsx-pretty/start/vim-jsx-pretty
-	url = https://github.com/MaxMEllon/vim-jsx-pretty
-[submodule ".vim/pack/vim-closetag/start/vim-closetag"]
-	path = .vim/pack/vim-closetag/start/vim-closetag
-	url = https://github.com/alvan/vim-closetag
-[submodule ".vim/pack/nerdcommenter/start/nerdcommenter"]
-	path = .vim/pack/nerdcommenter/start/nerdcommenter
-	url = https://github.com/preservim/nerdcommenter
-[submodule ".vim/pack/typescript/start/typescript-vim"]
-	path = .vim/pack/typescript/start/typescript-vim
-	url = https://github.com/leafgarland/typescript-vim
-[submodule ".vim/pack/coc/start/coc.nvim"]
-	path = .vim/pack/coc/start/coc.nvim
-	url = https://github.com/neoclide/coc.nvim.git
-	branch = release
-[submodule ".vim/pack/plugin/start/omnisharp-vim"]
-	path = .vim/pack/plugin/start/omnisharp-vim
-	url = https://github.com/OmniSharp/omnisharp-vim
-[submodule ".vim/pack/git-plugins/start/ale"]
-	path = .vim/pack/git-plugins/start/ale
-	url = https://github.com/dense-analysis/ale.git
+[submodule ".local/share/nvim/site/pack/packer/start/packer.nvim"]
+	path = .local/share/nvim/site/pack/packer/start/packer.nvim
+	url = https://github.com/wbthomason/packer.nvim

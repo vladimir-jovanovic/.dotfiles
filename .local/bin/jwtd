@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+if [[ -x $(command -v jq) ]]; then
+    cut -d"." -f1,2 <<< $1 | sed 's/\./\n/g' | base64 --decode | jq
+    echo "Signature: $(echo "${1}" | awk -F'.' '{print $3}')"
+fi

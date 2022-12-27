@@ -1,4 +1,0 @@
-#! /bin/bash
-
-chromiumProfile="$HOME/.config/teams-chromium"
-chromium --user-data-dir="$chromiumProfile" --app="https://teams.office.com" "$@"

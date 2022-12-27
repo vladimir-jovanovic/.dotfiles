@@ -23,8 +23,8 @@ bspc rule -a "*" follow=off
 
 wmname LG3D &
 
-killall compton 
-compton --config ~/.config/compton/compton.conf -b &
+killall picom 
+picom --backend glx --config ~/.config/picom/picom.conf -b &
 killall polybar 
 polybar example -c ~/.config/polybar/config &
 redshift -c ~/.config/redshift/redshift.conf & 

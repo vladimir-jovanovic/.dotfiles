@@ -10,7 +10,7 @@ export LC_ALL=en_US.UTF-8
 
 # Default programs:
 export DESKTOP_SESSION="bspwm"
-export EDITOR="vim"
+export EDITOR="neovim"
 export TERMINAL="urxvt"
 export BROWSER="chromium"
 export READER="zathura"

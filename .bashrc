@@ -11,9 +11,11 @@ echo -ne "\033[5 q"
 alias ls='ls --color=auto'
 alias smloadr='smloadr -q "MP_320" -p ~/Music/ $1'
 alias yttowav='youtube-dl -x --audio-format wav --audio-quality 0 $1'
+alias vim='nvim'
 alias poweroff='sudo poweroff $@'
 alias suspend='sudo suspend $@'
 alias reboot='sudo reboot $@'
+alias tojson='python -mjson.tool'
 
 # fff CD on exit script
 f() {

@@ -20,3 +20,4 @@ moggsplit
 mutagen-inspect
 mutagen-pony
 normalizer
+.config/transmission-daemon/dht.dat

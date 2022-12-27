@@ -3,4 +3,5 @@
 configuration {
   show-icons:         true;
   icon-theme:         "Papirus";
+  hover-select: true;
 }

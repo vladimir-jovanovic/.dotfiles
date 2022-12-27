@@ -17,7 +17,7 @@ module-margin-left = 5
 line-size = 1
  
 font-0 = Noto Sans:style=Bold:pixelsize=10;5
-font-1 = FiraCode Nerd Font:style=Bold:pixelsize=11;5
+font-1 = JetBrainsMono Nerd Font:style=Bold:pixelsize=11;5
 font-2 = uni font:fontformat=truetype:size=10:antialias=false;0
 
 dpi-x = 96
@@ -27,7 +27,7 @@ enable-ipc = true
 
 modules-left = bspwm xwindow
 modules-center = date
-modules-right = cmus alsa
+modules-right = cmus alsa powermenu
  
 bottom = false
 fixed-center = true
@@ -77,3 +77,8 @@ label-muted =  %percentage%%
 ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 =  
+
+[module/powermenu]
+type = custom/text
+click-left = exec powermenu
+content = " ⏻ "

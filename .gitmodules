@@ -1,3 +1,6 @@
 [submodule ".local/share/nvim/site/pack/packer/start/packer.nvim"]
 	path = .local/share/nvim/site/pack/packer/start/packer.nvim
 	url = https://github.com/wbthomason/packer.nvim
+[submodule ".config/nvim"]
+	path = .config/nvim
+	url = https://github.com/vladimir-jovanovic/neovim-config

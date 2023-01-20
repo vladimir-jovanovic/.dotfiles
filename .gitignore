@@ -21,3 +21,6 @@ mutagen-inspect
 mutagen-pony
 normalizer
 .config/transmission-daemon/dht.dat
+icons
+*wine*
+*.cache

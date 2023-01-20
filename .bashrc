@@ -10,7 +10,7 @@ echo -ne "\033[5 q"
 
 alias ls='ls --color=auto'
 alias smloadr='smloadr -q "MP_320" -p ~/Music/ $1'
-alias yttowav='youtube-dl -x --audio-format wav --audio-quality 0 $1'
+alias yttowav='yt-dlp -x --audio-format wav --audio-quality 0 --no-playlist -P /mnt/hdd/Documents/Ableton/User\ Library/Samples/Records $1'
 alias vim='nvim'
 alias poweroff='sudo poweroff $@'
 alias suspend='sudo suspend $@'

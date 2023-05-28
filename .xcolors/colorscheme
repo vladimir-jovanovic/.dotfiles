@@ -1,19 +1,8 @@
-#define BACKGROUND #2E3440
-#define FOREGROUND #E5E9F0
-
-#define COLOR0 #2E3440
-#define COLOR1 #88C0D0
-#define COLOR2 #BF616A
-#define COLOR3 #5E81AC
-#define COLOR4 #EBCB8B
-#define COLOR5 #A3BE8C
-#define COLOR6 #D08770
-#define COLOR7 #E5E9F0
-#define COLOR8 #4C566A
-#define COLOR9 #88C0D0
-#define COLOR10 #BF616A
-#define COLOR11 #5E81AC
-#define COLOR12 #EBCB8B
-#define COLOR13 #A3BE8C
-#define COLOR14 #D08770
-#define COLOR15 #8FBCBB
+define t_bg_floor     #FFFEF3
+define t_bg_dip       #FFF9EE
+define t_background   #FAF0E6
+define t_bg_bump      #E7DFD5
+define t_fg_comment   #8F98A1
+define t_foreground   #69717A
+define t_fg_highlight #5B636B
+define t_fg_ceiling   #00020E
